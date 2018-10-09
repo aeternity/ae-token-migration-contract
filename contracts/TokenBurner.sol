@@ -49,6 +49,9 @@ contract TokenBurner {
         require (_AEdmin1 != 0x0);
         AEdmin1 = _AEdmin1;
     }
+
+    event ShowData(address _sender, bytes _pubkeyBytes, uint _length);
+
     
     function receiveApproval(
       address _from,
@@ -60,11 +63,12 @@ contract TokenBurner {
         // Only let people burn AE through original AEToken contract.
         //require(msg.sender == 0x5CA9a71B1d01849C0a95490Cc00559717fCF0D1d);
         // We only care about the first 32 bytes, which should hold our new pub key.
-        require(bytes(_pubkey).length == 52);
+        //require(bytes(_pubkey).length == 52);
         
-        require(tokenFallback(_token).transferFrom(_from, this, _value));
+        //require(tokenFallback(_token).transferFrom(_from, this, _value));
         burned[_from].pubkey.push(string(_pubkey)); // pushing pubkey and value, to allow 1 user burn n times to m pubkeys
         burned[_from].amount.push(_value);
+        emit ShowData(_from, _pubkey, bytes(_pubkey).length);
         emit Burn(_from, _pubkey, _value, burnCount++, AEdeliveryBatchCounter);
         return true;
     }
