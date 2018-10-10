@@ -132,14 +132,12 @@ contract HumanStandardToken is StandardToken {
         decimals = _decimalUnits;                            // Amount of decimals for display purposes
         symbol = _tokenSymbol;                               // Set the symbol for display purposes
     }
-  event WTF(bytes data);
     /* Approves and then calls the receiving contract */
 
     
     function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success)  {
         allowed[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
-        emit WTF(_extraData);
         // call the receiveApproval function on the contract you want to be notified.
         // This crafts the function signature manually so one doesn't have to include
         // a contract in here just for this.
