@@ -59,7 +59,7 @@ contract TokenBurner {
     ) public returns (bool) {
         
         // Only let people burn AE through original AEToken contract.
-        //require(msg.sender == 0x5CA9a71B1d01849C0a95490Cc00559717fCF0D1d);
+        // UNCOMMENT THIS LINE ON MAINNET ! require(msg.sender == 0x5CA9a71B1d01849C0a95490Cc00559717fCF0D1d);
         // We only care about the first 32 bytes, which should hold our new pub key.
         //require(bytes(_pubkey).length == 52);
         
