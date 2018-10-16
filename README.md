@@ -13,7 +13,7 @@ This is a proposed token burner contract embedded in Truffle + VueJS.
 
 4. get the address of the tokenburner contract you just deployed with ```TokenBurner.deployed() ``` and copy the address at the bottom of the output
 
-5. This does not work for some reason: 
+5. Example call:
 
 ```
 AEToken.deployed().then(function(instance){
@@ -23,7 +23,18 @@ AEToken.deployed().then(function(instance){
 }) 
 ```
 
-# To-Do #
+# Deployment on Kovan
+AEToken: 0x35d8830ea35e6Df033eEdb6d5045334A4e34f9f9
+https://kovan.etherscan.io/address/0x35d8830ea35e6df033eedb6d5045334a4e34f9f9
 
-As you see, the contract function call above is providing the parameters for ```approveAndCall()``` : The contract to call, the amount of tokens to burn and an example AE wallet address, passed as bytes.
-The function call is reverting, and I didn't habe the time yet to figure out why. Possible solution: Use JS EVM in Remix and debug.
+TokenBurner: 0x4ecd812b010d9db16b0fb7143a79786b65b89b09
+https://kovan.etherscan.io/address/0x4ecd812b010d9db16b0fb7143a79786b65b89b09
+
+Successful transaction: https://kovan.etherscan.io/tx/0x0a158373884bb30b00e0d1b3f93bd6100388e9a1aee44282d235791923c94ffc
+
+# Burn listener
+nodeJS script: watches for Burn events in Kovan network via Infura Websocket, reads data from new events and saves to the Backendless instance https://develop.backendless.com/ae_tokenmigration/data/tables/TokenBurnings (database)
+
+```
+node Burn_listener.js
+```
