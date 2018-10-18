@@ -66,7 +66,7 @@ contract TokenBurner {
         require(tokenFallback(_token).transferFrom(_from, this, _value));
         burned[_from].pubkey.push(string(_pubkey)); // pushing pubkey and value, to allow 1 user burn n times to m pubkeys
         burned[_from].amount.push(_value);
-        emit Burn(_from, _pubkey, _value, burnCount++, AEdeliveryBatchCounter);
+        emit Burn(_from, _pubkey, _value, ++burnCount, AEdeliveryBatchCounter);
         return true;
     }
     
