@@ -13,7 +13,7 @@ TokenBurner.events.Burn({fromBlock: "latest" })
     console.log(event);
     let txID = event.transactionHash;
     let returns = event.returnValues;
-    let value = parseInt(returns['_value']);
+    let value = returns['_value'];
     let pubkey = web3.utils.toUtf8(returns['_pubkey']);
 
     axios.post(
