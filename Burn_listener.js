@@ -17,9 +17,9 @@ TokenBurner.events.Burn({fromBlock: "latest" })
     let pubkey = web3.utils.toUtf8(returns['_pubkey']);
 
     axios.post(
-        'https://api.backendless.com/CBD0589C-4114-2D15-FF41-6FC7F3EE8800/39EBBD6D-5A94-0739-FF27-B17F3957B700/data/TokenBurnings', 
-        {"count" : returns['_count'],
-        "deliveryPeriod" : returns['_deliveryPeriod'],
+        'https://api.backendless.com/CBD0589C-4114-2D15-FF41-6FC7F3EE8800/39EBBD6D-5A94-0739-FF27-B17F3957B700/data/TokenBurnings',
+        {"count" : parseInt(returns['_count']),
+        "deliveryPeriod" : parseInt(returns['_deliveryPeriod']),
         "from" : returns['_from'],
         "pubKey" : pubkey,
         "value" : value,
