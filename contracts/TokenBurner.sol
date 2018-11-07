@@ -20,6 +20,11 @@ contract TokenBurner {
         string[] pubkey;
     }
 
+    struct BatchTime {
+        uint256 blockNumber;
+        uint256 eventCount;
+    }
+
     // Keep track of token burn batches - use this number for filtering in the emitted Burn event.
     uint16 public AEdeliveryBatchCounter = 0;
 
@@ -35,6 +40,8 @@ contract TokenBurner {
     mapping(address => Claim) burned;
     // count the amount of burns for later filtering of all burnings
     uint256 public burnCount;
+    // track amount of burn events for each delivery period e.g. for checking if the event scanner missed something
+    mapping(uint16 => BatchTime) public batchTimes;
 
     constructor(address _AEdmin){
         require (_AEdmin != 0x0);
@@ -81,6 +88,8 @@ contract TokenBurner {
     function countUpDeliveryBatch()
     public onlyAEdmin
     {
+        batchTimes[AEdeliveryBatchCounter].blockNumber = block.number;
+        batchTimes[AEdeliveryBatchCounter].eventCount = burnCount;
         ++AEdeliveryBatchCounter;
     }
 
