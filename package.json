@@ -1,16 +1,19 @@
 {
-  "name": "vue-box",
-  "version": "0.1.0",
-  "private": true,
-  "author": "Stanislas Duprey",
-  "license": "MIT",
-  "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "ethereumjs-abi": "^0.6.5",
-    "truffle-contract": "^3.0.3",
-    "web3": "^1.0.0-beta.36"
-  },
-  "devDependencies": {
-    "babel-register": "^6.22.0"
-  }
+	"name": "token-migration",
+	"version": "0.1.0",
+	"private": true,
+	"license": "MIT",
+	"dependencies": {
+		"babel-polyfill": "^6.26.0",
+		"ethereumjs-abi": "^0.6.5",
+		"solc": "0.4.25",
+		"truffle-contract": "^3.0.3",
+		"web3": "^1.0.0-beta.36"
+	},
+	"scripts" : {
+		"test": "truffle test"
+	},
+	"devDependencies": {
+		"babel-register": "^6.22.0"
+	}
 }

@@ -1,0 +1,21 @@
+version: "3"
+services:
+  tokenmigration-test:
+    build: .
+    command: npm test
+    environment:
+      - TESTHOST=testrpc
+    depends_on:
+      - testrpc
+  tokenmigration:
+    build: .
+    command: node compile.js
+    environment:
+      - WEB3_PROVIDER=${WEB3_PROVIDER:-127.0.0.1:8545}
+      - MIGRATION_ADMIN_ADDRESS=${MIGRATION_ADMIN_ADDRESS:-0x0}
+      - TOKEN_CONTRACT_ADDRESS=${TOKEN_CONTRACT_ADDRESS:-0x0}
+  testrpc:
+    image: trufflesuite/ganache-cli:latest
+    command: node /app/ganache.core.cli.js --debug
+    ports:
+      - "8545"
